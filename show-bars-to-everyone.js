@@ -4,12 +4,16 @@
 // Display Modes: ALWAYS, CONTROL, HOVER, NONE, OWNER, OWNER_HOVER
 
 const tokens = canvas.tokens.placeables.map(token => {
+    const type = token.actor.type
+    const isVehicle = type === "vehicle" || token.document.height >= 5
     return {
         _id: token.id,
         "bar1.attribute": "attributes.hp",
         "bar2.attribute": "attributes.ac.value",
         "displayName": CONST.TOKEN_DISPLAY_MODES.HOVER,
-        "displayBars": CONST.TOKEN_DISPLAY_MODES.ALWAYS
+        "displayBars": isVehicle 
+            ? CONST.TOKEN_DISPLAY_MODES.NONE 
+            : CONST.TOKEN_DISPLAY_MODES.HOVER
     }
 })
 

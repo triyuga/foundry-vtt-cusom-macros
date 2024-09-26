@@ -1,10 +1,17 @@
 function tokenUpdate(values) {
-    canvas.tokens.controlled.map(token => token.document.update({
-        vision: values.vision || true, // boolean
-        // "sight.visionMode": values.visionMode || "basic", // 
-        brightSight: values.brightSight === 0 ? 0 : values.brightSight || token.data.brightSight, // number feet
-        dimSight: values.dimSight  === 0 ? 0 : values.dimSight || token.data.dimSight, // number feet
-    }));
+    canvas.tokens.controlled.map(token => {
+        console.log("token", token);
+        console.log("values", values);
+        token.document.update({
+            sight: {
+                range: values.dimSight === 0 ? 0 : values.dimSight
+            }
+        })
+    });
+
+    // canvas.tokens.controlled.map(token => token.document.update({light: data}));
+
+    // canvas.scene.updateEmbeddedDocuments("Token", updates);
 }
 
 let dialogEditor = new Dialog({
@@ -14,6 +21,7 @@ let dialogEditor = new Dialog({
         basic: {
             label: `Basic`,
             callback: () => {
+                console.log("Basic", { "brightSight": 0, "dimSight": 5 });
                 tokenUpdate({ "brightSight": 0, "dimSight": 5 });
                 dialogEditor.render(true);
             }
@@ -21,6 +29,7 @@ let dialogEditor = new Dialog({
         dim30: {
             label: `Dark30`,
             callback: () => {
+                console.log("Dark30", { "brightSight": 0, "dimSight": 30 });
                 tokenUpdate({ "brightSight": 0, "dimSight": 30 });
                 dialogEditor.render(true);
             }
@@ -28,6 +37,7 @@ let dialogEditor = new Dialog({
         dim60: {
             label: `Dark60`,
             callback: () => {
+                console.log("Dark60", { "brightSight": 0, "dimSight": 60 });
                 tokenUpdate({ "brightSight": 0, "dimSight": 60 });
                 dialogEditor.render(true);
             }
@@ -35,6 +45,7 @@ let dialogEditor = new Dialog({
         dim120: {
             label: `Dark120`,
             callback: () => {
+                console.log("Dark120", { "brightSight": 0, "dimSight": 120 });
                 tokenUpdate({ "brightSight": 0, "dimSight": 120 });
                 dialogEditor.render(true);
             }
@@ -42,6 +53,7 @@ let dialogEditor = new Dialog({
         bright120: {
             label: `DevilSight`,
             callback: () => {
+                console.log("DevilSight", { "brightSight": 120, "dimSight": 0 });
                 tokenUpdate({ "brightSight": 120, "dimSight": 0 });
                 dialogEditor.render(true);
             }
@@ -49,6 +61,7 @@ let dialogEditor = new Dialog({
         blind: {
             label: `Blind`,
             callback: () => {
+                console.log("Blind", { "brightSight": 0, "dimSight": 0 });
                 tokenUpdate({ "brightSight": 0, "dimSight": 0 });
                 dialogEditor.render(true);
             }

@@ -1,0 +1,12 @@
+{
+  "id": "tims-sidebar-resizer",
+  "title": "Tim's Sidebar Resizer",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "esmodules": [
+    "./tims-sidebar-resizer.js"
+  ]
+}
